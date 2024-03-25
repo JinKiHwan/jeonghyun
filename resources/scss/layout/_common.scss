@@ -29,14 +29,17 @@ section {
     justify-content: center;
     align-items: center;
     font-size: remSet(60px);
+    color: #eee;
+    text-shadow: 1px 1px 5px rgba($color: #000000, $alpha: 0.3);
   }
 
   span {
     display: block;
     width: remSet(100px);
     height: 1px;
-    background: #000;
+    background: #eee;
     position: absolute;
+    box-shadow: 1px 1px 5px rgba($color: #000000, $alpha: 0.3);
 
     left: 50%;
     top: 50%;

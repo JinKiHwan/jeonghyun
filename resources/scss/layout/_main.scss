@@ -34,6 +34,7 @@
     letter-spacing: 6px;
     font-size: remSet(24px);
     transition: text-shadow 0.3s 1s;
+    color: #eee;
     &.shadow {
       text-shadow: 1px 1px 10px rgba($color: #000000, $alpha: 0.5);
     }
