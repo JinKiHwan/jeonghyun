@@ -1,303 +1,225 @@
-//언어체크
-const userLang = document.getElementsByTagName('html')[0].getAttribute('lang');
+var canvas = document.getElementById('bg-mix'),
+  gl =
+    ((canvas.width = window.innerWidth),
+    (canvas.height = window.innerHeight),
+    canvas.getContext('webgl')),
+  time = (gl || console.error('Unable to initialize WebGL.'), 0),
+  vertexSource = `
+attribute vec2 position;
+void main() {
+  gl_Position = vec4(position, 0.0, 1.0);
+}
+`,
+  fragmentSource = `
+precision highp float;
+
+#define AA
+
+uniform float width;
+uniform float height;
+vec2 resolution = vec2(width, height);
+
+uniform float time;
+
+void main(){
+
+	float strength = 0.1;
+	float t = time/16.0;
+
+	vec3 col = vec3(0);
+	vec2 fC = gl_FragCoord.xy;
+
+	#ifdef AA
+	for(int i = -1; i <= 1; i++) {
+		for(int j = -1; j <= 1; j++) {
+
+			fC = gl_FragCoord.xy+vec2(i,j)/3.0;//3
+
+			#endif
+
+			//Normalized pixel coordinates (from 0 to 1)
+			vec2 pos = fC/resolution.xy;
+
+			pos.y /= resolution.x/resolution.y;
+			pos = 4.0*(vec2(0.5) - pos);//4,0.5
+
+			for(float k = 1.0; k < 7.0; k+=1.0){ 
+				pos.x += strength * sin(2.0*t+k*1.5 * pos.y)+t*0.5;
+				pos.y += strength * cos(2.0*t+k*1.5 * pos.x);
+			}
+
+			//Time varying pixel colour
+			col += 0.6 + 0.2*cos(time+pos.xyx+vec3(1,0,8)); //0.5,0.5,0,2,4
+
+			#ifdef AA
+		}
+	}
+
+	col /= 9.0;//9
+	#endif
+
+  //Gamma
+  col = pow(col, vec3(0.4545));//0.4545
+
+	//Fragment colour
+	gl_FragColor = vec4(col,1.0);
+}
+`;
+function onWindowResize() {
+  (canvas.width = window.innerWidth),
+    (canvas.height = window.innerHeight),
+    gl.viewport(0, 0, canvas.width, canvas.height),
+    gl.uniform1f(widthHandle, window.innerWidth),
+    gl.uniform1f(heightHandle, window.innerHeight);
+}
+function compileShader(e, t) {
+  t = gl.createShader(t);
+  if (
+    (gl.shaderSource(t, e),
+    gl.compileShader(t),
+    !gl.getShaderParameter(t, gl.COMPILE_STATUS))
+  )
+    throw 'Shader compile failed with: ' + gl.getShaderInfoLog(t);
+  return t;
+}
+function getAttribLocation(e, t) {
+  e = gl.getAttribLocation(e, t);
+  if (-1 === e) throw 'Cannot find attribute ' + t + '.';
+  return e;
+}
+function getUniformLocation(e, t) {
+  e = gl.getUniformLocation(e, t);
+  if (-1 === e) throw 'Cannot find uniform ' + t + '.';
+  return e;
+}
+window.addEventListener('resize', onWindowResize, !1);
+var thisFrame,
+  vertexShader = compileShader(vertexSource, gl.VERTEX_SHADER),
+  fragmentShader = compileShader(fragmentSource, gl.FRAGMENT_SHADER),
+  program = gl.createProgram(),
+  vertexData =
+    (gl.attachShader(program, vertexShader),
+    gl.attachShader(program, fragmentShader),
+    gl.linkProgram(program),
+    gl.useProgram(program),
+    new Float32Array([-1, 1, -1, -1, 1, 1, 1, -1])),
+  vertexDataBuffer = gl.createBuffer(),
+  positionHandle =
+    (gl.bindBuffer(gl.ARRAY_BUFFER, vertexDataBuffer),
+    gl.bufferData(gl.ARRAY_BUFFER, vertexData, gl.STATIC_DRAW),
+    getAttribLocation(program, 'position')),
+  timeHandle =
+    (gl.enableVertexAttribArray(positionHandle),
+    gl.vertexAttribPointer(positionHandle, 2, gl.FLOAT, !1, 8, 0),
+    getUniformLocation(program, 'time')),
+  widthHandle = getUniformLocation(program, 'width'),
+  heightHandle = getUniformLocation(program, 'height'),
+  lastFrame =
+    (gl.uniform1f(widthHandle, window.innerWidth),
+    gl.uniform1f(heightHandle, window.innerHeight),
+    Date.now());
+function draw() {
+  (thisFrame = Date.now()),
+    (time += (thisFrame - lastFrame) / 770),
+    (lastFrame = thisFrame),
+    gl.uniform1f(timeHandle, time),
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4),
+    requestAnimationFrame(draw);
+}
+draw();
 
 $(document).ready(function () {
-  // 메인비주얼 영상 기능
-  const isMainVideo = document.querySelector('#isMainMovie');
-  const videoArea = $('#isConnectionArea');
-  const isHome = $('#home');
-  const isStory = $('#story');
-  const isMovie = $('#isMovie');
-  let videoStr = 'start';
+  /* 메인 */
+  const mainImg = document.querySelectorAll('.main__contents .img-box');
+  const mainTxt = document.querySelectorAll('.main__contents .txt-box p');
 
-  isMainVideo.addEventListener('ended', handleVideoEnd);
+  gsap.set(mainImg, {
+    opacity: 0,
+  });
+  gsap.set(mainTxt, {
+    x: 10,
+    opacity: 0,
+  });
 
-  //영상 종료 헨들러
-  function handleVideoEnd(e) {
-    e.preventDefault();
-    if (videoStr === 'start') {
-      videoStr = 'end';
-    } else {
-      videoStr = 'start';
-    }
-    setMovieClass(videoStr);
-  }
-  //BG 클래스 세팅
-  function setMovieClass(str) {
-    if (str === 'start') {
-      videoArea.removeClass('movieend');
-    } else if (str === 'end') {
-      videoArea.addClass('movieend');
-    }
-    isMovie.hide();
-    isHome.removeClass('playmovie');
-    controlMovie();
-  }
-  //영상 컨트롤
-  function controlMovie() {
-    setTimeout(() => {
-      isMovie.show();
-      isHome.addClass('playmovie');
-      isStory.addClass('playmovie');
-      reloadVideo();
-    }, 5000);
-  }
+  gsap.to(mainImg, {
+    opacity: 1,
+    duration: 1,
 
-  //영상 리로드
-  function reloadVideo() {
-    let originalSource = isMainVideo.src;
-    isMainVideo.src = '';
-    isMainVideo.src = originalSource;
-    isMainVideo.load();
-  }
-
-  //메인 영상 init
-  setMovieClass('start');
-
-  /* 스토리 섹션으로 이동시 + 100px */
-  const link = document.querySelector('a[href="#story"]');
-
-  link.addEventListener('click', function (event) {
-    event.preventDefault(); // 링크 클릭 시 기본 동작인 스크롤 이동을 막음
-
-    const targetElement = document.querySelector('#story');
-    if (targetElement) {
-      const targetOffset = targetElement.offsetTop + 100;
-      window.scrollTo({
-        top: targetOffset,
+    onComplete: function () {
+      gsap.to(mainTxt, {
+        x: 0,
+        opacity: 1,
+        duration: 1,
+        stagger: 0.4,
+        onComplete: function () {
+          // .main__contents .txt-box에 클래스 'shadow' 추가
+          document
+            .querySelectorAll('.main__contents .txt-box')
+            .forEach(function (element) {
+              element.classList.add('shadow');
+            });
+        },
       });
-    }
+    },
   });
 
-  /* 캐릭터 스와이퍼 */
-  let charThum = new Swiper('.charThum', {
-    slidesPerView: 7,
-    slidesPerGroup: 7,
-    spaceBetween: 10,
-    breakpoints: {
-      1024: {
-        touchRatio: 0,
-        direction: 'vertical',
-        slidesPerView: 'auto',
+  /* 작품활동 */
+  $.getJSON('/resources/js/filmo.json', function (data) {
+    data.forEach(function (filmo) {
+      var slideHTML = `
+        <li class="swiper-slide"">
+          <div data-filmo="${filmo.filmoURL}">
+            <figure class="filmo-thum">
+              <img src="${filmo.filmoThum}" alt="" />
+            </figure>
+            <dl>
+              <dt>${filmo.filmoName}</dt>
+              <dd>${filmo.filmoCategory}</dd>
+              <dd class="date">${filmo.filmoDate}</dd>
+            </dl>
+
+            <div class="filmo-bg">
+              <img src="${filmo.filmoThum}" alt="" />
+            </div>
+          </div>
+        </li>
+      `;
+      // Append the slide HTML to the swiper wrapper
+      $('.filmo-swiper .swiper-wrapper').append(slideHTML);
+    });
+
+    // Initialize the swiper
+    var filmoSwiper = new Swiper('.filmo-swiper', {
+      slidesPerView: 'auto',
+      spaceBetween: 100,
+      speed: 500,
+      navigation: {
+        nextEl: '.filmo-swiper__next',
+        prevEl: '.filmo-swiper__prev',
       },
-    },
+    });
   });
 
-  let charDetail = new Swiper('.charDetail', {
-    slidesPerView: 1,
-    touchRatio: 1, //터치 슬라이드 방지
-    spaceBetween: 30,
-    thumbs: {
-      swiper: charThum,
-    },
-    effect: 'fade',
-    breakpoints: {
-      1024: {
-        touchRatio: 0,
-      },
-    },
-  });
+  /* 헤더 */
+  let links = gsap.utils.toArray('nav li a');
 
-  /* 시스템 스와이퍼 */
-  let systemSw = new Swiper('.systemSw', {
-    autoplay: {
-      delay: 0,
-      disableOnInteraction: false,
-    },
-    allowTouchMove: false,
-    loop: true,
-    loopAdditionalSlides: 5,
-    speed: 6000,
-    slidesPerView: 2.5,
-    spaceBetween: 10,
-    breakpoints: {
-      1024: {
-        spaceBetween: 11,
-        spaceBetween: 40,
-        slidesPerView: 'auto',
-      },
-    },
-  });
-});
-
-//특정영역 탑 버튼 노출, 비노출
-let isScrollTop = $('#isScrollTop');
-$(window).on('scroll', function () {
-  // Top Btn
-  checkVisible($('#character'));
-});
-function checkVisible(elm) {
-  let viewportHeight = $(window).height(), // Viewport Height
-    scrolltop = $(window).scrollTop(), // Scroll Top
-    y = $(elm).offset().top;
-
-  if (y < viewportHeight + scrolltop) {
-    isScrollTop.addClass('-show');
-  } else {
-    isScrollTop.removeClass('-show');
-  }
-}
-
-//캐릭터 음성
-function actCharVoice() {
-  alert('준비 중입니다.');
-}
-
-//메뉴 보이기, 숨기기
-function actToggle(el, id, type) {
-  $(el).toggleClass('-active');
-  $('#' + id).toggleClass('-show');
-
-  //슬라이드 토글 모션
-  if (type == 'slide') {
-    //sns 나라 별 분기
-    if (id == 'isSnsList') {
-      let liElements = $('#isSnsList > li');
-      let isShowSns = [];
-
-      if (userLang == 'ko') {
-        //한국어
-        isShowSns = ['navercafe', 'twiter', 'youtube', 'discode'];
-      } else if (userLang == 'en') {
-        //영어
-        isShowSns = ['twiter', 'facebook', 'youtube', 'discode'];
-      } else if (userLang == 'ja') {
-        //일본어
-        isShowSns = ['twiter', 'youtube', 'discode'];
-      } else if (userLang == 'zh') {
-        //중국어(간체)
-        isShowSns = ['weibo', 'bili'];
-      } else if (userLang == 'zt') {
-        //중국어(번체)
-        isShowSns = ['facebook', 'youtube', 'discode'];
-      }
-
-      liElements.each(function () {
-        let sns = $(this).find('a').attr('class');
-        if (isShowSns.includes(sns)) {
-          $(this).css('display', 'flex');
-        }
+  links.forEach((link) => {
+    let element = document.querySelector(link.getAttribute('href')),
+      linkST = ScrollTrigger.create({
+        trigger: element,
+        start: 'top top',
       });
-    }
 
-    $('#' + id)
-      .stop()
-      .slideToggle({
-        duration: 500,
-      });
-  } else if (type == 'nav') {
-    setMobileNav(id);
-  }
-}
+    ScrollTrigger.create({
+      trigger: element,
+      start: 'top center',
+      end: 'bottom center',
+      onToggle: (self) => setActive(link),
+    });
+  });
 
-//모바일 Nav 세팅
-function setMobileNav(id) {
-  let isW = $('#' + id).width();
-  let isH = $('body').height();
-  $('#' + id).css('height', isH);
-  $('#isLangList').css('width', isW);
-  $('#isSnsList').css('width', isW);
-}
-function resetMobileNav(id) {
-  $('#' + id).css('height', 'auto');
-  $('#isLangList').css('width', 'auto');
-  $('#isSnsList').css('width', 'auto');
-}
-
-//SNS 링크 분기
-function isSnsLink(link) {
-  let url = '';
-
-  if (userLang == 'ko') {
-    //한국어
-    switch (link) {
-      case 'navercafe':
-        url = 'https://cafe.naver.com/witchspring';
-        break;
-      case 'twiter':
-        url = 'https://twitter.com/WitchSpring_kr';
-        break;
-      case 'youtube':
-        url = 'https://www.youtube.com/@KIWIWALKS';
-        break;
-      case 'discode':
-        url = 'https://discord.gg/uKwnCUat';
-        break;
-      default:
-        break;
-    }
-  } else if (userLang == 'en') {
-    //영어
-    switch (link) {
-      case 'twiter':
-        url = 'https://twitter.com/witchspringr';
-        break;
-      case 'facebook':
-        url = 'https://www.facebook.com/witchsprings';
-        break;
-      case 'youtube':
-        url = 'https://www.youtube.com/@KIWIWALKS';
-        break;
-      case 'discode':
-        url = 'https://discord.gg/uKwnCUat';
-        break;
-      default:
-        break;
-    }
-  } else if (userLang == 'ja') {
-    //일본어
-    switch (link) {
-      case 'twiter':
-        url = 'https://twitter.com/WitchSprings';
-        break;
-      case 'youtube':
-        url = 'https://www.youtube.com/@KIWIWALKS';
-        break;
-      case 'discode':
-        url = 'https://discord.gg/uKwnCUat';
-        break;
-      default:
-        break;
-    }
-  } else if (userLang == 'zt') {
-    //중국어(번체)
-    switch (link) {
-      case 'facebook':
-        url = 'https://www.facebook.com/witchsprings';
-        break;
-      case 'youtube':
-        url = 'https://www.youtube.com/@KIWIWALKS';
-        break;
-      case 'discode':
-        url = 'https://discord.gg/uKwnCUat';
-        break;
-      default:
-        break;
-    }
-  } else if (userLang == 'zh') {
-    //중국어(간체)
-    switch (link) {
-      case 'weibo':
-        url = 'https://weibo.com/witchspring';
-        break;
-      case 'bili':
-        url = 'https://space.bilibili.com/3493082502793916';
-        break;
-      default:
-        break;
-    }
-  }
-
-  //새창 링크 이동
-  window.open(url);
-}
-
-//브라우저 크기 변경 시 이벤트
-$(window).on('resize', function () {
-  let windowWidth = $(window).width();
-  if (windowWidth < 1008) {
-    setMobileNav('isMobileNav');
-  } else {
-    resetMobileNav('isMobileNav');
+  function setActive(link) {
+    links.forEach((el) => el.classList.remove('on'));
+    link.classList.add('on');
   }
 });

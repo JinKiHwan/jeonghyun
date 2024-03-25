@@ -4,14 +4,14 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title></title>
+    <title>Jung Jeong Hyun</title>
     <!-- META -->
-    <meta property="og:title" content="" />
+    <meta property="og:title" content="Jung Jeong Hyun" />
     <meta property="og:url" content="" />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="" />
-    <meta property="og:description" content="" />
-    <meta name="description" content="" />
+    <meta property="og:description" content="안녕하세요. 배우 정정현입니다." />
+    <meta name="description" content="안녕하세요. 배우 정정현입니다." />
     <!-- FAVICON -->
     <link
       rel="shortcut icon"
@@ -23,13 +23,68 @@
       href="./resources/images/favicon.png" />
     <!-- CSS -->
     <link rel="stylesheet" href="./resources/css/style.min.css" />
+
     <!-- SCRIPT -->
     <script defer src="https://www.youtube.com/iframe_api"></script>
     <script defer src="./resources/js/jquery.min.js"></script>
     <script defer src="./resources/js/swiper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.1/ScrollToPlugin.min.js"></script>
+
     <script defer src="./resources/js/common.js"></script>
-    <script defer src="./resources/js/tool-1.0.min.js"></script>
-    <script defer src="./resources/js/translation.js"></script>
   </head>
-  <body class="ko"></body>
+  <body class="ko">
+    <!-- bg -->
+    <canvas id="bg-mix" width="1920" height="919" style="opacity: 0.3"></canvas>
+
+    <header class="header">
+      <h1 class="logo">
+        <a href="#main">Jung JeongHyun</a>
+      </h1>
+
+      <nav>
+        <ul>
+          <li><a href="#main" class="on"></a><span>main</span></li>
+          <li><a href="#filmo"></a><span>filmo</span></li>
+          <li><a href="#profile"></a><span>proofile</span></li>
+          <li><a href="#!"></a><span>contact</span></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="main" id="main">
+        <div class="main__inner">
+          <div class="main__contents">
+            <figure class="img-box" id="mainImg">
+              <img src="/resources/images/main/main.webp" alt="" />
+            </figure>
+            <div class="txt-box" id="mainTxt">
+              <p>안녕하세요</p>
+              <p>배우 <b>정정현</b>입니다</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="filmo" id="filmo">
+        <div class="filmo__inner">
+          <div class="sec_tit">
+            <i>작</i>
+            <i>품</i>
+            <i>활</i>
+            <i>동</i>
+            <span></span>
+          </div>
+
+          <article class="filmo-swiper swiper">
+            <ul class="swiper-wrapper"></ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="profile" id="profile"></section>
+    </main>
+  </body>
 </html>
