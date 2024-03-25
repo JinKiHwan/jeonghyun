@@ -22,10 +22,15 @@
 
   .img-box {
     width: 25%;
-    mask-image: url('/resources/images/main/works_mask.webp');
-    mask-size: contain;
-    mask-repeat: no-repeat;
+    //mask-image: url('/resources/images/main/works_mask.webp');
+    //mask-size: contain;
+    //mask-repeat: no-repeat;
     //filter: saturate(20%);
+    filter: grayscale(1);
+    transition: all 0.3s;
+    &:hover{
+      filter: grayscale(0);
+    }
   }
   .txt-box {
     writing-mode: vertical-rl;

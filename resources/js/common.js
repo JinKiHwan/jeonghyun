@@ -1,4 +1,4 @@
-var canvas = document.getElementById('bg-mix'),
+/* var canvas = document.getElementById('bg-mix'),
   gl =
     ((canvas.width = window.innerWidth),
     (canvas.height = window.innerHeight),
@@ -127,7 +127,7 @@ function draw() {
     requestAnimationFrame(draw);
 }
 draw();
-
+ */
 $(document).ready(function () {
   /* 메인 */
   const mainImg = document.querySelectorAll('.main__contents .img-box');
