@@ -222,4 +222,17 @@ $(document).ready(function () {
     links.forEach((el) => el.classList.remove('on'));
     link.classList.add('on');
   }
+
+  var profileFilm = new Swiper('.profile_film', {
+    slidesPerView: 'auto',
+    spaceBetween: 25,
+    speed: 3000,
+    autoplay: {
+      delay: 1,
+      desableOnInteraction: false,
+    },
+    loop: true,
+    slidesPerView: 'auto',
+    freemode: true,
+  });
 });

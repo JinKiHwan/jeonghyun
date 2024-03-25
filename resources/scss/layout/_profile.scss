@@ -1,0 +1,24 @@
+@use '../helpers/' as *;
+
+.profile {
+  &_film {
+    pointer-events: none;
+    overflow: hidden;
+    background: #000;
+    padding: remSet(25px) 0;
+    ul {
+      display: flex;
+      transition-timing-function: linear;
+      li {
+        width: 15%;
+        aspect-ratio: 16/9;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+  }
+}
