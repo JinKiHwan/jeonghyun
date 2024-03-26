@@ -28,7 +28,7 @@
     //filter: saturate(20%);
     filter: grayscale(1);
     transition: all 0.3s;
-    &:hover{
+    &:hover {
       filter: grayscale(0);
     }
   }
@@ -47,5 +47,315 @@
     b {
       font-weight: 400;
     }
+  }
+
+  .mainSwiper {
+    /* overflow: hidden; */
+    width: 100%;
+    max-width: 500px;
+    aspect-ratio: 719/900;
+    position: relative;
+    overflow: hidden;
+
+    .swiper-wrapper {
+      width: 100%;
+      height: 100%;
+      position: relative;
+
+      li {
+        height: 100%;
+        aspect-ratio: 719/900;
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: 0 !important;
+
+        img {
+          /* transform: scale(1.5); */
+        }
+
+        &.swiper-slide-active {
+          opacity: 1 !important;
+
+          img {
+            animation: zoomIn 1.5s;
+            animation-fill-mode: forwards;
+          }
+        }
+
+        img {
+          object-fit: contain;
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+    .cameraAngle {
+      pointer-events: none;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      background: url('/resources/images/main/frame.png') no-repeat center
+        center/cover;
+    }
+    .cameraRecord {
+      position: absolute;
+      right: remSet(20px);
+      top: remSet(90px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      writing-mode: vertical-rl;
+      font-size: remSet(16px);
+      font-family: 'Pretendard-Regular';
+      line-height: 1.5;
+      color: #fff;
+      text-shadow: 1px 1px 10px rgba($color: #000000, $alpha: 0.5);
+      span {
+        display: block;
+        width: remSet(16px);
+        aspect-ratio: 1/1;
+        border-radius: 50%;
+        background: rgb(245, 48, 48);
+        margin-bottom: remSet(5px);
+        margin-left: remSet(2px);
+        filter: blur(2px);
+        animation: record 15s infinite linear;
+      }
+    }
+    .cameraDate {
+      position: absolute;
+      left: remSet(5px);
+      top: remSet(100px);
+      writing-mode: vertical-lr;
+      color: rgba($color: #fff, $alpha: 0.8);
+      text-shadow: 1px 1px 10px rgba($color: #000000, $alpha: 0.5);
+      font-size: remSet(12px);
+    }
+    .cameraFocus {
+      position: absolute;
+      left: remSet(5px);
+      top: 50%;
+      height: remSet(150px);
+      /* border: 1px solid #f00; */
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      transform: translateY(-50%);
+      mask-image: url('/resources/images/main/focusframe.png');
+      mask-size: 100% 100%;
+      -webkit-mask-repeat: no-repeat;
+      -webkit-mask-position: 0 0;
+      ul {
+        display: flex;
+        writing-mode: vertical-lr;
+        color: rgba($color: #fff, $alpha: 0.8);
+        text-shadow: 1px 1px 10px rgba($color: #000000, $alpha: 0.5);
+        font-size: remSet(10px);
+        animation: focus infinite 5s ease-in-out;
+
+        li {
+          margin: remSet(2px) 0;
+          padding: remSet(5px) 0;
+          position: relative;
+
+          &::before,
+          &::after {
+            content: '';
+            width: remSet(5px);
+            height: remSet(1px);
+            display: block;
+            position: absolute;
+            right: 50%;
+            top: 0;
+            transform: translateX(50%);
+            background: rgba($color: #fff, $alpha: 0.8);
+          }
+
+          &::after {
+            top: auto !important;
+            bottom: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes zoomIn {
+  0% {
+    transform: scale(1.3);
+    filter: blur(15px);
+  }
+  5% {
+    transform: scale(1.1);
+    filter: blur(18px);
+  }
+  25% {
+    transform: scale(1.2);
+    filter: blur(10px);
+  }
+  100% {
+    transform: scale(1);
+    filter: blur(0px);
+  }
+}
+
+@keyframes record {
+  0% {
+    opacity: 0;
+  }
+  1% {
+    opacity: 1;
+  }
+  4% {
+    opacity: 1;
+  }
+  5% {
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 0;
+  }
+  11% {
+    opacity: 1;
+  }
+  14% {
+    opacity: 1;
+  }
+  15% {
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 0;
+  }
+  21% {
+    opacity: 1;
+  }
+  24% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0;
+  }
+
+  30% {
+    opacity: 0;
+  }
+  31% {
+    opacity: 1;
+  }
+  34% {
+    opacity: 1;
+  }
+  35% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 0;
+  }
+  41% {
+    opacity: 1;
+  }
+  44% {
+    opacity: 1;
+  }
+  45% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  51% {
+    opacity: 1;
+  }
+  54% {
+    opacity: 1;
+  }
+  55% {
+    opacity: 0;
+  }
+  60% {
+    opacity: 0;
+  }
+  61% {
+    opacity: 1;
+  }
+  64% {
+    opacity: 1;
+  }
+  65% {
+    opacity: 0;
+  }
+  70% {
+    opacity: 0;
+  }
+
+  71% {
+    opacity: 1;
+  }
+  74% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 0;
+  }
+  80% {
+    opacity: 0;
+  }
+  81% {
+    opacity: 1;
+  }
+  84% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 0;
+  }
+  90% {
+    opacity: 0;
+  }
+  91% {
+    opacity: 1;
+  }
+  94% {
+    opacity: 1;
+  }
+  95% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes focus {
+  0% {
+    transform: translateY(0);
+  }
+
+  15% {
+    transform: translateY(-15%);
+  }
+
+  20% {
+    transform: translateY(-10%);
+  }
+
+  35% {
+    transform: translateY(15%);
+  }
+
+  70% {
+    transform: translateY(10%);
+  }
+
+  100% {
+    transform: translateY(0);
   }
 }

@@ -34,10 +34,7 @@
 
     <script defer src="./resources/js/common.js"></script>
   </head>
-  <body class="ko" style="background-color: rgb(58, 58, 58);">
-    <!-- bg -->
-    <!-- <canvas id="bg-mix" width="1920" height="919" style="opacity: 0.3"></canvas> -->
-
+  <body class="ko" style="background-color: rgb(58, 58, 58)">
     <header class="header">
       <h1 class="logo">
         <a href="#main">Jung JeongHyun</a>
@@ -55,7 +52,7 @@
 
     <main>
       <section class="main" id="main">
-        <div class="main__inner">
+        <!-- <div class="main__inner">
           <div class="main__contents">
             <figure class="img-box" id="mainImg">
               <img src="/resources/images/main/main.webp" alt="" />
@@ -65,6 +62,52 @@
               <p>배우 <b>정정현</b>입니다</p>
             </div>
           </div>
+        </div> -->
+
+        <div class="main__inner">
+          <div class="mainSwiper swiper">
+            <ul class="swiper-wrapper">
+              <li class="swiper-slide">
+                <img src="/resources/images/main/mainsw01.webp" alt="" />
+              </li>
+              <li class="swiper-slide">
+                <img src="/resources/images/main/mainsw02.webp" alt="" />
+              </li>
+              <li class="swiper-slide">
+                <img src="/resources/images/main/mainsw03.webp" alt="" />
+              </li>
+              <li class="swiper-slide">
+                <img src="/resources/images/main/mainsw04.webp" alt="" />
+              </li>
+              <li class="swiper-slide">
+                <img src="/resources/images/main/mainsw05.webp" alt="" />
+              </li>
+            </ul>
+            <div class="cameraAngle"></div>
+            <div class="cameraRecord"><span></span>REC</div>
+            <div class="cameraDate"><span id="currentDate"></span></div>
+            <div class="cameraFocus">
+              <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>3</li>
+                <li>2</li>
+                <li>1</li>
+                <li>0</li>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>3</li>
+                <li>2</li>
+                <li>1</li>
+              </ul>
+            </div>
+          </div>
+
+          <a href="#!" class="mainSwiper__next"> 다음 </a>
         </div>
       </section>
 
@@ -83,6 +126,26 @@
           </article>
         </div>
       </section>
+
+      <script>
+        function formatDate(date) {
+          var d = new Date(date),
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+
+          if (month.length < 2) month = '0' + month;
+          if (day.length < 2) day = '0' + day;
+
+          return [year, month, day].join('-');
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+          document.getElementById('currentDate').textContent = formatDate(
+            new Date()
+          );
+        });
+      </script>
 
       <section class="profile" id="profile">
         <div class="profile_film swiper">
@@ -150,6 +213,7 @@
           </ul>
         </div>
       </section>
+      <section class="contact" id="contact"></section>
     </main>
   </body>
 </html>

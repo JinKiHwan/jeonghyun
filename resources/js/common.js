@@ -223,6 +223,22 @@ $(document).ready(function () {
     link.classList.add('on');
   }
 
+  var mainSwiper = new Swiper('.mainSwiper', {
+    slidesPerView: 3,
+    spaceBetween: 25,
+    speed: 1000,
+    loop: true,
+    effect: 'fade',
+    /* autoplay: {
+      delay: 5,
+      desableOnInteraction: false,
+    }, */
+    navigation: {
+      nextEl: '.mainSwiper__next',
+      prevEl: '.filmo-swiper__prev',
+    },
+  });
+
   var profileFilm = new Swiper('.profile_film', {
     slidesPerView: 'auto',
     spaceBetween: 25,
