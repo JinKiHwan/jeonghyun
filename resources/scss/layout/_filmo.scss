@@ -50,6 +50,12 @@
           font-size: remSet(22px);
           font-family: 'Diphylleia-Regular';
 
+          span {
+            font-size: remSet(15px);
+            margin-right: remSet(5px);
+            opacity: 0.8;
+          }
+
           dt {
             width: 50%;
             font-weight: 700;

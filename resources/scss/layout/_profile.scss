@@ -1,16 +1,20 @@
 @use '../helpers/' as *;
 
 .profile {
+  position: relative;
   &_film {
     pointer-events: none;
     overflow: hidden;
-    background: #222;
-    padding: remSet(25px) 0;
+    background: #070707;
+    padding: remSet(15px) 0;
+    position: absolute;
+    left: 0;
+    bottom: 0;
     ul {
       display: flex;
       transition-timing-function: linear;
       li {
-        width: 15%;
+        width: 10%;
         aspect-ratio: 16/9;
 
         img {
@@ -19,6 +23,26 @@
           object-fit: cover;
         }
       }
+    }
+  }
+
+  &__inner {
+    max-width: remSet(700px);
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 7vw;
+    padding-top: 2vw;
+  }
+
+  &-img {
+    height: 100%;
+    max-height: remSet(500px);
+    margin-right: remSet(20px);
+    img {
+      height: 100%;
     }
   }
 }

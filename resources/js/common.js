@@ -39,7 +39,7 @@ $(document).ready(function () {
       var slideHTML = `
         <li class="swiper-slide">
           <dl>
-            <dt>${filmo.filmoName}</dt>
+            <dt><span>${filmo.filmoCategory}</span> ${filmo.filmoName}</dt>
             <dd>${filmo.filmoRole}</dd>
           </dl>
         </li>
@@ -150,7 +150,7 @@ $(document).ready(function () {
 
   var profileFilm = new Swiper('.profile_film', {
     slidesPerView: 'auto',
-    spaceBetween: 25,
+    spaceBetween: 15,
     speed: 3000,
     autoplay: {
       delay: 1,
