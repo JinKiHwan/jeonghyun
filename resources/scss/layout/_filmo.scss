@@ -3,50 +3,104 @@
 .filmo {
   width: 100%;
   overflow-x: hidden;
+  /* height: auto; */
+  margin: remSet(100px) 0;
   &__inner {
     max-width: 1800px;
     margin: 0 auto;
+    overflow: hidden;
     height: 100%;
     padding: remSet(100px) 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+    z-index: 0;
   }
 
-  .filmo-swiper {
-    width: 100%;
+  .filmoSwiper {
+    width: 50%;
     padding: remSet(30px);
+    color: #000;
+    height: remSet(150px);
+    position: relative;
     .swiper-wrapper {
       display: flex;
-    }
+      flex-direction: column;
+      transition-timing-function: linear;
 
-    .swiper-slide {
-      width: 25%;
-      aspect-ratio: 4/3;
-      position: relative;
-      z-index: 0;
-
-      > div,
-      figure,
-      img {
-        height: 100%;
-        object-fit: contain;
-        margin: 0 auto;
-      }
-
-      .filmo-bg {
+      .swiper-slide {
         width: 100%;
         height: 100%;
-        position: absolute;
-        z-index: -1;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        box-shadow: 5px 5px 10px rgba($color: #000000, $alpha: 1);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0.5;
+        color: #fff;
+        cursor: grab;
 
-        filter: blur(15px);
-        img {
+        &.swiper-slide-active {
+          opacity: 1;
+        }
+        dl {
+          display: flex;
+          gap: remSet(30px);
           width: 100%;
-          object-fit: cover;
+          font-size: remSet(22px);
+          font-family: 'Diphylleia-Regular';
+
+          dt {
+            width: 50%;
+            font-weight: 700;
+            text-align: right;
+            text-shadow: 1px 1px 10px rgba($color: #000000, $alpha: 0.5);
+          }
+
+          dd {
+            width: 50%;
+            font-weight: 20;
+            text-shadow: 1px 1px 10px rgba($color: #000000, $alpha: 0.5);
+          }
         }
       }
+    }
+
+    .filmo-year {
+      color: #fff;
+      font-size: remSet(22px);
+      position: absolute;
+      right: 0;
+      top: remSet(62px);
+      font-family: 'Diphylleia-Regular';
+
+      #filmoYear {
+        position: relative;
+        display: block;
+      }
+
+      .arrow {
+        display: block;
+        width: remSet(17px);
+        aspect-ratio: 3/4;
+        position: absolute;
+        left: remSet(-30px);
+        top: remSet(2px);
+        background: url('/resources/images/main/triangle.svg') no-repeat center
+          center/contain;
+      }
+    }
+  }
+  .filmo-thum {
+    position: absolute;
+    z-index: -1;
+    right: 0;
+    bottom: 0;
+    opacity: 0.5;
+    max-height: 50vh;
+    img {
+      height: 100%;
+      object-fit: contain;
     }
   }
 }

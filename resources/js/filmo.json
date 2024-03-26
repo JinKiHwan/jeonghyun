@@ -1,68 +1,86 @@
 [
   {
     "filmoThum": "/resources/images/filmo/filmo11.webp",
-    "filmoName": "",
-    "filmoRole": "",
-    "filmoYear": ""
+    "filmoCategory": "드라마",
+    "filmoName": "7인의 부활",
+    "filmoRole": "기자役 (단연)",
+    "filmoYear": "2024"
   },
   {
     "filmoThum": "/resources/images/filmo/filmo10.webp",
-    "filmoName": "",
-    "filmoRole": "",
-    "filmoYear": ""
+    "filmoCategory": "드라마",
+    "filmoName": "사랑한다고 말해줘",
+    "filmoRole": "극단동기役 (단역)",
+    "filmoYear": "2023"
   },
   {
     "filmoThum": "/resources/images/filmo/filmo09.webp",
-    "filmoName": "",
-    "filmoRole": "",
-    "filmoYear": ""
+    "filmoCategory": "드라마",
+    "filmoName": "닥터차정숙",
+    "filmoRole": "의대동기役 (단역)",
+    "filmoYear": "2023"
   },
   {
     "filmoThum": "/resources/images/filmo/filmo08.webp",
-    "filmoName": "",
-    "filmoRole": "",
-    "filmoYear": ""
+    "filmoCategory": "연극",
+    "filmoName": "디데이",
+    "filmoRole": "명신役 (조연)",
+    "filmoYear": "2023"
   },
   {
     "filmoThum": "/resources/images/filmo/filmo07.webp",
-    "filmoName": "",
-    "filmoRole": "",
-    "filmoYear": ""
+    "filmoCategory": "연극",
+    "filmoName": "면식범",
+    "filmoRole": "윤영役 (주연)",
+    "filmoYear": "2022"
   },
   {
     "filmoThum": "/resources/images/filmo/filmo06.webp",
-    "filmoName": "",
-    "filmoRole": "",
-    "filmoYear": ""
+    "filmoCategory": "뮤직비디오",
+    "filmoName": "딕펑스 <빈말>",
+    "filmoRole": "소녀役 (주연)",
+    "filmoYear": "2022"
+  },
+  {
+    "filmoThum": "",
+    "filmoCategory": "연극",
+    "filmoName": "신나는 예술여행 <나와 함께하는 사람들>",
+    "filmoRole": "수연役 (조연)",
+    "filmoYear": "2022"
   },
   {
     "filmoThum": "/resources/images/filmo/filmo05.webp",
-    "filmoName": "",
-    "filmoRole": "",
-    "filmoYear": ""
+    "filmoCategory": "연극",
+    "filmoName": "신나는 예술여행 <나와 함께하는 사람들>",
+    "filmoRole": "준희役(주연)",
+    "filmoYear": "2022"
   },
   {
     "filmoThum": "/resources/images/filmo/filmo04.webp",
-    "filmoName": "",
-    "filmoRole": "",
-    "filmoYear": ""
+    "filmoCategory": "단편영화",
+    "filmoName": "내 감정은 WATER",
+    "filmoRole": "아랑役(주연)",
+    "filmoYear": "2021"
   },
   {
     "filmoThum": "/resources/images/filmo/filmo03.webp",
-    "filmoName": "",
-    "filmoRole": "",
-    "filmoYear": ""
+    "filmoCategory": "웹드라마",
+    "filmoName": "무물쭈물",
+    "filmoRole": "다솜役 (조연)",
+    "filmoYear": "2021"
   },
   {
     "filmoThum": "/resources/images/filmo/filmo02.webp",
-    "filmoName": "",
-    "filmoRole": "",
-    "filmoYear": ""
+    "filmoCategory": "연극",
+    "filmoName": "올모스트 메인",
+    "filmoRole": "호프, 지넷役 (주연)",
+    "filmoYear": "2021"
   },
   {
     "filmoThum": "/resources/images/filmo/filmo01.webp",
-    "filmoName": "",
-    "filmoRole": "",
-    "filmoYear": ""
+    "filmoCategory": "단편영화",
+    "filmoName": "동아",
+    "filmoRole": "학원 여학생役 (단역)",
+    "filmoYear": "2018"
   }
 ]

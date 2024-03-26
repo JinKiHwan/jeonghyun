@@ -34,7 +34,7 @@
 
     <script defer src="./resources/js/common.js"></script>
   </head>
-  <body class="ko" style="background-color: rgb(58, 58, 58)">
+  <body class="ko">
     <header class="header">
       <h1 class="logo">
         <a href="#main">Jung JeongHyun</a>
@@ -52,18 +52,6 @@
 
     <main>
       <section class="main" id="main">
-        <!-- <div class="main__inner">
-          <div class="main__contents">
-            <figure class="img-box" id="mainImg">
-              <img src="/resources/images/main/main.webp" alt="" />
-            </figure>
-            <div class="txt-box" id="mainTxt">
-              <p>안녕하세요</p>
-              <p>배우 <b>정정현</b>입니다</p>
-            </div>
-          </div>
-        </div> -->
-
         <div class="main__inner">
           <div class="mainSwiper swiper">
             <ul class="swiper-wrapper">
@@ -105,10 +93,15 @@
                 <li>1</li>
               </ul>
             </div>
-          </div>
+            <div class="cameraFocusArrow"></div>
+            <div class="mainSwiper_next"></div>
 
-          <a href="#!" class="mainSwiper__next"> 다음 </a>
+            <a href="#!" class="mainSwiper_progressbar"></a>
+          </div>
         </div>
+
+        <p class="main-bg">Jung JeongHyun</p>
+        <p class="main-bg bg2">Jung JeongHyun</p>
       </section>
 
       <section class="filmo" id="filmo">
@@ -121,9 +114,18 @@
             <span></span>
           </div>
 
-          <article class="filmo-swiper swiper">
+          <article class="filmoSwiper swiper">
             <ul class="swiper-wrapper"></ul>
+
+            <div class="filmo-year">
+              <div class="arrow"></div>
+              <div id="filmoYear"></div>
+            </div>
           </article>
+
+          <div class="filmo-thum">
+            <!-- <img src="/resources/images/filmo/filmo01.webp" alt="" /> -->
+          </div>
         </div>
       </section>
 

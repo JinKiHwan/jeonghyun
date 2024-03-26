@@ -1,133 +1,3 @@
-/* var canvas = document.getElementById('bg-mix'),
-  gl =
-    ((canvas.width = window.innerWidth),
-    (canvas.height = window.innerHeight),
-    canvas.getContext('webgl')),
-  time = (gl || console.error('Unable to initialize WebGL.'), 0),
-  vertexSource = `
-attribute vec2 position;
-void main() {
-  gl_Position = vec4(position, 0.0, 1.0);
-}
-`,
-  fragmentSource = `
-precision highp float;
-
-#define AA
-
-uniform float width;
-uniform float height;
-vec2 resolution = vec2(width, height);
-
-uniform float time;
-
-void main(){
-
-	float strength = 0.1;
-	float t = time/16.0;
-
-	vec3 col = vec3(0);
-	vec2 fC = gl_FragCoord.xy;
-
-	#ifdef AA
-	for(int i = -1; i <= 1; i++) {
-		for(int j = -1; j <= 1; j++) {
-
-			fC = gl_FragCoord.xy+vec2(i,j)/3.0;//3
-
-			#endif
-
-			//Normalized pixel coordinates (from 0 to 1)
-			vec2 pos = fC/resolution.xy;
-
-			pos.y /= resolution.x/resolution.y;
-			pos = 4.0*(vec2(0.5) - pos);//4,0.5
-
-			for(float k = 1.0; k < 7.0; k+=1.0){ 
-				pos.x += strength * sin(2.0*t+k*1.5 * pos.y)+t*0.5;
-				pos.y += strength * cos(2.0*t+k*1.5 * pos.x);
-			}
-
-			//Time varying pixel colour
-			col += 0.6 + 0.2*cos(time+pos.xyx+vec3(1,0,8)); //0.5,0.5,0,2,4
-
-			#ifdef AA
-		}
-	}
-
-	col /= 9.0;//9
-	#endif
-
-  //Gamma
-  col = pow(col, vec3(0.4545));//0.4545
-
-	//Fragment colour
-	gl_FragColor = vec4(col,1.0);
-}
-`;
-function onWindowResize() {
-  (canvas.width = window.innerWidth),
-    (canvas.height = window.innerHeight),
-    gl.viewport(0, 0, canvas.width, canvas.height),
-    gl.uniform1f(widthHandle, window.innerWidth),
-    gl.uniform1f(heightHandle, window.innerHeight);
-}
-function compileShader(e, t) {
-  t = gl.createShader(t);
-  if (
-    (gl.shaderSource(t, e),
-    gl.compileShader(t),
-    !gl.getShaderParameter(t, gl.COMPILE_STATUS))
-  )
-    throw 'Shader compile failed with: ' + gl.getShaderInfoLog(t);
-  return t;
-}
-function getAttribLocation(e, t) {
-  e = gl.getAttribLocation(e, t);
-  if (-1 === e) throw 'Cannot find attribute ' + t + '.';
-  return e;
-}
-function getUniformLocation(e, t) {
-  e = gl.getUniformLocation(e, t);
-  if (-1 === e) throw 'Cannot find uniform ' + t + '.';
-  return e;
-}
-window.addEventListener('resize', onWindowResize, !1);
-var thisFrame,
-  vertexShader = compileShader(vertexSource, gl.VERTEX_SHADER),
-  fragmentShader = compileShader(fragmentSource, gl.FRAGMENT_SHADER),
-  program = gl.createProgram(),
-  vertexData =
-    (gl.attachShader(program, vertexShader),
-    gl.attachShader(program, fragmentShader),
-    gl.linkProgram(program),
-    gl.useProgram(program),
-    new Float32Array([-1, 1, -1, -1, 1, 1, 1, -1])),
-  vertexDataBuffer = gl.createBuffer(),
-  positionHandle =
-    (gl.bindBuffer(gl.ARRAY_BUFFER, vertexDataBuffer),
-    gl.bufferData(gl.ARRAY_BUFFER, vertexData, gl.STATIC_DRAW),
-    getAttribLocation(program, 'position')),
-  timeHandle =
-    (gl.enableVertexAttribArray(positionHandle),
-    gl.vertexAttribPointer(positionHandle, 2, gl.FLOAT, !1, 8, 0),
-    getUniformLocation(program, 'time')),
-  widthHandle = getUniformLocation(program, 'width'),
-  heightHandle = getUniformLocation(program, 'height'),
-  lastFrame =
-    (gl.uniform1f(widthHandle, window.innerWidth),
-    gl.uniform1f(heightHandle, window.innerHeight),
-    Date.now());
-function draw() {
-  (thisFrame = Date.now()),
-    (time += (thisFrame - lastFrame) / 770),
-    (lastFrame = thisFrame),
-    gl.uniform1f(timeHandle, time),
-    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4),
-    requestAnimationFrame(draw);
-}
-draw();
- */
 $(document).ready(function () {
   /* 메인 */
   const mainImg = document.querySelectorAll('.main__contents .img-box');
@@ -167,37 +37,63 @@ $(document).ready(function () {
   $.getJSON('/resources/js/filmo.json', function (data) {
     data.forEach(function (filmo) {
       var slideHTML = `
-        <li class="swiper-slide"">
-          <div data-filmo="${filmo.filmoURL}">
-            <figure class="filmo-thum">
-              <img src="${filmo.filmoThum}" alt="" />
-            </figure>
-            <dl>
-              <dt>${filmo.filmoName}</dt>
-              <dd>${filmo.filmoCategory}</dd>
-              <dd class="date">${filmo.filmoDate}</dd>
-            </dl>
-
-            <div class="filmo-bg">
-              <img src="${filmo.filmoThum}" alt="" />
-            </div>
-          </div>
+        <li class="swiper-slide">
+          <dl>
+            <dt>${filmo.filmoName}</dt>
+            <dd>${filmo.filmoRole}</dd>
+          </dl>
         </li>
       `;
-      // Append the slide HTML to the swiper wrapper
-      $('.filmo-swiper .swiper-wrapper').append(slideHTML);
+      $('.filmoSwiper .swiper-wrapper').append(slideHTML);
+
+      var filmoYearHTML = `
+        <span>${filmo.filmoYear}</span>
+      `;
+      $('#filmoYear').append(filmoYearHTML);
     });
 
-    // Initialize the swiper
-    var filmoSwiper = new Swiper('.filmo-swiper', {
-      slidesPerView: 'auto',
-      spaceBetween: 100,
+    var filmoSwiper = new Swiper('.filmoSwiper', {
+      slidesPerView: 1,
+      direction: 'vertical',
       speed: 500,
-      navigation: {
-        nextEl: '.filmo-swiper__next',
-        prevEl: '.filmo-swiper__prev',
+      spaceBetween: 30,
+      centeredSlides: true,
+      mousewheel: true,
+      on: {
+        init: function () {
+          // 초기 활성화된 슬라이드의 filmoYear를 업데이트
+          var initialFilmoYear = data[0].filmoYear;
+          var initialFilmoThum = data[0].filmoThum;
+          var initialFilmoThunImg = `
+          <img src="${initialFilmoThum}" alt="" />
+          `;
+          $('#filmoYear').text(initialFilmoYear);
+          updateFilmoThum(initialFilmoThum);
+        },
+        slideChange: function () {
+          // 슬라이드가 변경될 때마다 활성 슬라이드의 filmoYear를 업데이트
+          var activeIndex = this.activeIndex;
+          var activeFilmoYear = data[activeIndex].filmoYear;
+          $('#filmoYear').text(activeFilmoYear);
+
+          //배경 업데이트
+          var activeFilmoThum = data[activeIndex].filmoThum;
+          var activeFilmoThunImg = `
+          <img src="${activeFilmoThum}" alt="" />
+          `;
+          updateFilmoThum(activeFilmoThum);
+        },
       },
     });
+
+    // 배경 이미지 업데이트 함수
+    function updateFilmoThum(filmoThum) {
+      var filmoThumHTML = `<img src="${filmoThum}" alt="" />`;
+      $('.filmo-thum').html(filmoThumHTML); // 기존 내용을 새 내용으로 대체
+    }
+
+    // Swiper 인스턴스 초기화
+    filmoSwiper.init();
   });
 
   /* 헤더 */
@@ -223,19 +119,32 @@ $(document).ready(function () {
     link.classList.add('on');
   }
 
+  /* mainSwiper */
+  const progressCircle = document.querySelector('.autoplay-progress svg');
+  const progressContent = document.querySelector('.autoplay-progress span');
+
   var mainSwiper = new Swiper('.mainSwiper', {
     slidesPerView: 3,
     spaceBetween: 25,
     speed: 1000,
     loop: true,
     effect: 'fade',
-    /* autoplay: {
-      delay: 5,
-      desableOnInteraction: false,
-    }, */
+    autoplay: {
+      delay: 5000,
+    },
+    pagination: {
+      el: '.mainSwiper_progressbar',
+      type: 'progressbar',
+    },
     navigation: {
-      nextEl: '.mainSwiper__next',
-      prevEl: '.filmo-swiper__prev',
+      nextEl: '.mainSwiper_next',
+    },
+
+    on: {
+      autoplayTimeLeft(s, time, progress) {
+        progressCircle.style.setProperty('--progress', 1 - progress);
+        progressContent.textContent = `${Math.ceil(time / 1000)}s`;
+      },
     },
   });
 

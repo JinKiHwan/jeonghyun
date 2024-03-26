@@ -4,6 +4,27 @@
   width: 100%;
   height: 100vh;
   overflow: hidden;
+  position: relative;
+  z-index: 0;
+
+  &-bg {
+    font-size: remSet(120px);
+    position: absolute;
+    left: 25%;
+    top: 25%;
+    transform: translate(-50%, -50%);
+    font-family: 'Diphylleia-Regular';
+    /* font-weight: 400; */
+    z-index: -1;
+    color: #303030;
+    white-space: nowrap;
+
+    &.bg2 {
+      left: 75%;
+      top: 75%;
+    }
+  }
+
   &__inner {
     width: 95%;
     height: 100%;
@@ -14,53 +35,17 @@
     justify-content: center;
   }
 
-  &__contents {
-    display: flex;
-    justify-content: center;
-    gap: 1vw;
-  }
-
-  .img-box {
-    width: 25%;
-    //mask-image: url('/resources/images/main/works_mask.webp');
-    //mask-size: contain;
-    //mask-repeat: no-repeat;
-    //filter: saturate(20%);
-    filter: grayscale(1);
-    transition: all 0.3s;
-    &:hover {
-      filter: grayscale(0);
-    }
-  }
-  .txt-box {
-    writing-mode: vertical-rl;
-    line-height: 1.3;
-    font-family: 'Diphylleia-Regular';
-    letter-spacing: 6px;
-    font-size: remSet(24px);
-    transition: text-shadow 0.3s 1s;
-    color: #eee;
-    &.shadow {
-      text-shadow: 1px 1px 10px rgba($color: #000000, $alpha: 0.5);
-    }
-
-    b {
-      font-weight: 400;
-    }
-  }
-
   .mainSwiper {
-    /* overflow: hidden; */
     width: 100%;
     max-width: 500px;
     aspect-ratio: 719/900;
     position: relative;
-    overflow: hidden;
 
     .swiper-wrapper {
       width: 100%;
       height: 100%;
       position: relative;
+      overflow: hidden;
 
       li {
         height: 100%;
@@ -149,6 +134,7 @@
       mask-size: 100% 100%;
       -webkit-mask-repeat: no-repeat;
       -webkit-mask-position: 0 0;
+
       ul {
         display: flex;
         writing-mode: vertical-lr;
@@ -156,7 +142,6 @@
         text-shadow: 1px 1px 10px rgba($color: #000000, $alpha: 0.5);
         font-size: remSet(10px);
         animation: focus infinite 5s ease-in-out;
-
         li {
           margin: remSet(2px) 0;
           padding: remSet(5px) 0;
@@ -179,6 +164,88 @@
             top: auto !important;
             bottom: 0;
           }
+        }
+      }
+    }
+    .cameraFocusArrow {
+      content: '';
+      display: block;
+      width: remSet(10px);
+      aspect-ratio: 1/1;
+      background: url('/resources/images/main/triangle.svg') no-repeat center
+        center/contain;
+      position: absolute;
+      left: remSet(20px);
+      opacity: 0.5;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .mainSwiper_progressbar {
+      width: 100%;
+      height: 4px;
+      left: 0;
+      top: remSet(10px);
+      background: rgba($color: #fff, $alpha: 0.5);
+      display: block;
+      position: relative;
+
+      span {
+        background: rgba($color: #ddd, $alpha: 1);
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        transform: scale(0);
+        transform-origin: left top;
+      }
+    }
+
+    .mainSwiper_next {
+      width: remSet(30px);
+      aspect-ratio: 1/1;
+      display: block;
+      position: absolute;
+      right: remSet(-55px);
+      top: calc(50% + remSet(10px));
+      transform: rotate(180deg);
+      background: url('/resources/images/main/triangle.svg') no-repeat 100% 100% /
+        contain;
+      cursor: pointer;
+      opacity: 0.5;
+      transition: opacity 0.5s;
+      &:hover {
+        opacity: 12;
+      }
+    }
+
+    &__next {
+      position: absolute;
+      display: block;
+      bottom: remSet(-60px);
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      font-size: 0;
+      width: remSet(50px);
+      aspect-ratio: 1/1;
+      border: 5px solid #fff;
+      border-radius: 50%;
+      background: #fff;
+
+      i {
+        display: block;
+        width: 100%;
+        height: 100%;
+
+        &::after {
+          content: '';
+          width: 100%;
+          height: 100%;
+          display: block;
+          border-radius: 50%;
+          border: 2px solid rgb(58, 58, 58);
         }
       }
     }
