@@ -95,9 +95,10 @@
     position: absolute;
     z-index: -1;
     right: 0;
-    bottom: 0;
+    top: 50%;
     opacity: 0.5;
-    max-height: 50vh;
+    height: 50vh;
+    transform: translateY(-50%);
     img {
       height: 100%;
       object-fit: contain;
