@@ -1,0 +1,20 @@
+@use '../helpers/' as *;
+
+.contact {
+  &__inner {
+    width: 95%;
+    height: 100%;
+    max-width: 1500px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__wrap {
+    color: #fff;
+    h2 {
+      font-size: remSet(40px);
+    }
+  }
+}
