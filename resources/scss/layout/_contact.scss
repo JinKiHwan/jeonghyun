@@ -13,8 +13,79 @@
 
   &__wrap {
     color: #fff;
+    font-family: 'Pretendard-Regular';
+
     h2 {
       font-size: remSet(40px);
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: remSet(30px);
+    }
+
+    ul {
+      display: flex;
+      gap: remSet(80px);
+      li {
+        position: relative;
+        padding-bottom: remSet(3px);
+        &::before {
+          content: '';
+          width: 0;
+          height: 1px;
+          background: #fff;
+          position: absolute;
+          left: remSet(30px);
+          bottom: 0;
+          transition: width 0.3s;
+        }
+        &:hover {
+          &::before {
+            width: calc(100% - remSet(25px));
+            transition: width 0.3s;
+          }
+        }
+        input {
+          visibility: hidden;
+          position: absolute;
+          left: 0;
+          top: 0;
+        }
+
+        a,
+        label {
+          display: flex;
+          align-items: center;
+          font-size: remSet(20px);
+          cursor: pointer;
+          &::before {
+            content: '';
+            display: block;
+            width: remSet(25px);
+            aspect-ratio: 1/1;
+            margin-right: remSet(10px);
+          }
+        }
+
+        &.instagram {
+          a,
+          label {
+            &::before {
+              background: url('/resources/images/contact/instagram.png')
+                no-repeat center center/contain;
+            }
+          }
+        }
+
+        &.mail {
+          a,
+          label {
+            &::before {
+              background: url('/resources/images/contact/email.png') no-repeat
+                center center/contain;
+            }
+          }
+        }
+      }
     }
   }
 }

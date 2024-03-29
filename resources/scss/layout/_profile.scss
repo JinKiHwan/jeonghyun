@@ -2,6 +2,7 @@
 
 .profile {
   position: relative;
+  overflow: hidden;
   &_film {
     pointer-events: none;
     overflow: hidden;
@@ -55,12 +56,15 @@
   }
   &-txt {
     color: #fff;
+    font-family: 'Pretendard-Regular';
+
     h2 {
       font-size: remSet(40px);
       font-weight: 800;
       margin-bottom: remSet(30px);
       span {
         font-size: remSet(18px);
+        margin-left: remSet(10px);
       }
     }
     li {

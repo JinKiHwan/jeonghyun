@@ -11,8 +11,17 @@
     font-size: remSet(22px);
     transition: text-shadow 0.3s;
     text-shadow: 1px 1px 5px rgba($color: #000000, $alpha: 0.5);
+
+    .white & {
+      color: #2f4858;
+    }
+
     &:hover {
       text-shadow: 1px 1px 5px rgba($color: #000000, $alpha: 1);
+
+      .white & {
+        ext-shadow: 1px 1px 5px rgba($color: #2f4858, $alpha: 1);
+      }
     }
   }
 
@@ -30,6 +39,20 @@
     transition: background 0.3s;
     z-index: 9;
 
+    @include mobile {
+      right: auto;
+      top: -100%;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: rgba($color: #000000, $alpha: 0.5);
+      backdrop-filter: blur(15px);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
     &:hover {
       background: rgba($color: #000000, $alpha: 0.5);
     }
@@ -40,11 +63,20 @@
       align-items: flex-end;
       width: 100%;
 
+      @include mobile {
+        width: auto;
+      }
+
       li {
         position: relative;
         width: 100%;
         display: flex;
         justify-content: flex-end;
+
+        @include mobile {
+          margin: 2vw 0;
+        }
+
         a {
           display: block;
           width: remSet(23px);
@@ -52,6 +84,21 @@
           padding: remSet(10px) 0;
           position: relative;
           transition: all 0.3s;
+          font-size: 0;
+
+          @include mobile {
+            display: block;
+            width: 100%;
+            height: auto;
+            font-size: 6vw;
+            white-space: nowrap;
+            color: #fff;
+            text-transform: capitalize;
+            text-align: center;
+            font-weight: 400;
+            font-family: 'Diphylleia-Regular';
+          }
+
           &::after {
             content: '';
             width: 100%;
@@ -64,12 +111,27 @@
             background: #ffffff;
             transition: all 0.3s;
             box-shadow: 1px 1px 5px rgba($color: #000000, $alpha: 0.3);
+
+            @include mobile {
+              display: none;
+            }
+
+            .white & {
+              background: #dadada;
+              box-shadow: 1px 1px 3px rgba($color: #000000, $alpha: 0.8);
+            }
           }
 
           &.on,
           &:hover {
             width: remSet(30px);
             transition: all 0.3s;
+
+            @include mobile {
+              width: 100%;
+              color: rgba(255, 121, 10, 0.993);
+            }
+
             &::after {
               background: rgba(255, 121, 10, 0.993);
               transition: all 0.3s;
@@ -98,6 +160,10 @@
           font-family: 'Diphylleia-Regular';
           color: #fff;
           text-shadow: 1px 1px 10px rgba($color: #000000, $alpha: 0.3);
+
+          @include mobile {
+            display: none;
+          }
         }
       }
     }

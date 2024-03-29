@@ -1,0 +1,11 @@
+@use '../helpers/' as *;
+
+.footer {
+  padding: remSet(40px) 0;
+  background: $c-dark;
+  text-align: center;
+  p {
+    color: #a1a1a1;
+    font-size: remSet(14px);
+  }
+}

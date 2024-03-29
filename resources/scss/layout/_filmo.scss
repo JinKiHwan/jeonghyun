@@ -3,9 +3,9 @@
 .filmo {
   width: 100%;
   overflow-x: hidden;
-  /* height: auto; */
   margin: remSet(100px) 0;
   &__inner {
+    width: 95%;
     max-width: 1800px;
     margin: 0 auto;
     overflow: hidden;
@@ -16,6 +16,15 @@
     align-items: center;
     position: relative;
     z-index: 0;
+
+    @include mobile {
+      justify-content: space-between;
+      gap: 1vw;
+
+      .sec_tit {
+        transform: translateY(-25vw);
+      }
+    }
   }
 
   .filmoSwiper {
@@ -24,6 +33,11 @@
     color: #000;
     height: remSet(150px);
     position: relative;
+
+    @include mobile {
+      width: calc(100% - 26vw);
+    }
+
     .swiper-wrapper {
       display: flex;
       flex-direction: column;
@@ -50,10 +64,19 @@
           font-size: remSet(22px);
           font-family: 'Diphylleia-Regular';
 
+          @include mobile {
+            font-size: 3.5vw;
+            justify-content: flex-end;
+          }
+
           span {
             font-size: remSet(15px);
             margin-right: remSet(5px);
             opacity: 0.8;
+
+            @include mobile {
+              font-size: 2.5vw;
+            }
           }
 
           dt {
@@ -61,11 +84,12 @@
             font-weight: 700;
             text-align: right;
             text-shadow: 1px 1px 10px rgba($color: #000000, $alpha: 0.5);
+            line-height: 1.2;
           }
 
           dd {
             width: 50%;
-            font-weight: 20;
+            font-weight: 200;
             text-shadow: 1px 1px 10px rgba($color: #000000, $alpha: 0.5);
           }
         }
@@ -79,6 +103,11 @@
       right: 0;
       top: remSet(62px);
       font-family: 'Diphylleia-Regular';
+
+      @include mobile {
+        right: auto;
+        left: -8vw;
+      }
 
       #filmoYear {
         position: relative;
@@ -94,6 +123,13 @@
         top: remSet(2px);
         background: url('/resources/images/main/triangle.svg') no-repeat center
           center/contain;
+
+        @include mobile {
+          top: remSet(0px);
+          left: auto;
+          right: remSet(-30px);
+          transform: rotate(180deg);
+        }
       }
     }
   }

@@ -34,7 +34,7 @@
 
     <script defer src="./resources/js/common.js"></script>
   </head>
-  <body class="ko">
+  <body>
     <header class="header">
       <h1 class="logo">
         <a href="#main">Jung JeongHyun</a>
@@ -42,10 +42,10 @@
 
       <nav>
         <ul>
-          <li><a href="#main" class="on"></a><span>main</span></li>
-          <li><a href="#filmo"></a><span>filmo</span></li>
-          <li><a href="#profile"></a><span>profile</span></li>
-          <li><a href="#contact"></a><span>contact</span></li>
+          <li><a href="#main" class="on">main</a><span>main</span></li>
+          <li><a href="#filmo">filmo</a><span>filmo</span></li>
+          <li><a href="#profile">profile</a><span>profile</span></li>
+          <li><a href="#contact">contact</a><span>contact</span></li>
         </ul>
       </nav>
     </header>
@@ -151,19 +151,7 @@
         <div class="profile_film swiper">
           <ul class="swiper-wrapper">
             <li class="swiper-slide">
-              <img src="/resources/images/profile/film01.webp" alt="" />
-            </li>
-            <li class="swiper-slide">
-              <img src="/resources/images/profile/film02.webp" alt="" />
-            </li>
-            <li class="swiper-slide">
-              <img src="/resources/images/profile/film03.webp" alt="" />
-            </li>
-            <li class="swiper-slide">
-              <img src="/resources/images/profile/film04.webp" alt="" />
-            </li>
-            <li class="swiper-slide">
-              <img src="/resources/images/profile/film05.webp" alt="" />
+              <img src="/resources/images/profile/film00.webp" alt="" />
             </li>
             <li class="swiper-slide">
               <img src="/resources/images/profile/film01.webp" alt="" />
@@ -181,34 +169,37 @@
               <img src="/resources/images/profile/film05.webp" alt="" />
             </li>
             <li class="swiper-slide">
-              <img src="/resources/images/profile/film01.webp" alt="" />
+              <img src="/resources/images/profile/film06.webp" alt="" />
             </li>
             <li class="swiper-slide">
-              <img src="/resources/images/profile/film02.webp" alt="" />
+              <img src="/resources/images/profile/film07.webp" alt="" />
             </li>
             <li class="swiper-slide">
-              <img src="/resources/images/profile/film03.webp" alt="" />
+              <img src="/resources/images/profile/film08.webp" alt="" />
             </li>
             <li class="swiper-slide">
-              <img src="/resources/images/profile/film04.webp" alt="" />
+              <img src="/resources/images/profile/film09.webp" alt="" />
             </li>
             <li class="swiper-slide">
-              <img src="/resources/images/profile/film05.webp" alt="" />
+              <img src="/resources/images/profile/film10.webp" alt="" />
             </li>
             <li class="swiper-slide">
-              <img src="/resources/images/profile/film01.webp" alt="" />
+              <img src="/resources/images/profile/film11.webp" alt="" />
             </li>
             <li class="swiper-slide">
-              <img src="/resources/images/profile/film02.webp" alt="" />
+              <img src="/resources/images/profile/film12.webp" alt="" />
             </li>
             <li class="swiper-slide">
-              <img src="/resources/images/profile/film03.webp" alt="" />
+              <img src="/resources/images/profile/film13.webp" alt="" />
             </li>
             <li class="swiper-slide">
-              <img src="/resources/images/profile/film04.webp" alt="" />
+              <img src="/resources/images/profile/film14.webp" alt="" />
             </li>
             <li class="swiper-slide">
-              <img src="/resources/images/profile/film05.webp" alt="" />
+              <img src="/resources/images/profile/film15.webp" alt="" />
+            </li>
+            <li class="swiper-slide">
+              <img src="/resources/images/profile/film16.webp" alt="" />
             </li>
           </ul>
         </div>
@@ -251,12 +242,6 @@
                     <dd>INFP</dd>
                   </dl>
                 </li>
-                <li>
-                  <dl>
-                    <dt><i>소</i><i>속</i><i>사 :</i></dt>
-                    <dd>무소속</dd>
-                  </dl>
-                </li>
               </ul>
             </div>
           </div>
@@ -267,13 +252,28 @@
           <div class="contact__wrap">
             <h2>Contact</h2>
             <ul>
-              <li><a href="#!"></a></li>
-              <li><a href="#!"></a></li>
+              <li class="instagram">
+                <a
+                  href="https://www.instagram.com/jung_jeonghyun_/"
+                  target="_blank"
+                  >Instagram</a
+                >
+              </li>
+              <li class="mail">
+                <input
+                  id="mail"
+                  href="javascript:void(0)"
+                  value="hijjh1965@naver.com"
+                  onclick="this.select();document.execCommand('copy');alert('클립보드에 복사 되었습니다.');return false;" />
+                <label for="mail">Mail</label>
+              </li>
             </ul>
           </div>
         </div>
       </section>
-      <footer class="footer"></footer>
+      <footer class="footer">
+        <p>Copyright © Webing All Rights Reserved.</p>
+      </footer>
     </main>
   </body>
 </html>

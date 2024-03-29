@@ -10,6 +10,10 @@
 }
 body {
   background-color: rgb(22, 22, 22);
+
+  &.white {
+    background-color: rgb(228, 223, 217);
+  }
 }
 
 section {
@@ -22,6 +26,11 @@ section {
   display: flex;
   flex-wrap: wrap;
   position: relative;
+
+  @include mobile {
+    width: 25vw;
+  }
+
   i {
     font-family: 'Diphylleia-Regular';
     display: flex;
@@ -31,6 +40,10 @@ section {
     font-size: remSet(60px);
     color: #eee;
     text-shadow: 1px 1px 5px rgba($color: #000000, $alpha: 0.3);
+
+    @include mobile {
+      font-size: 4vw;
+    }
   }
 
   span {
@@ -40,9 +53,12 @@ section {
     background: #eee;
     position: absolute;
     box-shadow: 1px 1px 5px rgba($color: #000000, $alpha: 0.3);
-
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%) rotate(-45deg);
+
+    @include mobile {
+      width: 10vw;
+    }
   }
 }

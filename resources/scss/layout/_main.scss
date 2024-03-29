@@ -18,6 +18,7 @@
     z-index: -1;
     color: #303030;
     white-space: nowrap;
+    display: none;
 
     &.bg2 {
       left: 75%;
@@ -40,6 +41,14 @@
     max-width: 500px;
     aspect-ratio: 719/900;
     position: relative;
+
+    @include mobile {
+      width: 100%;
+      max-width: 750px;
+    }
+    @include mobile-mini {
+      width: 80%;
+    }
 
     .swiper-wrapper {
       width: 100%;
@@ -99,6 +108,11 @@
       line-height: 1.5;
       color: #fff;
       text-shadow: 1px 1px 10px rgba($color: #000000, $alpha: 0.5);
+
+      @include mobile {
+        font-size: remSet(32px);
+      }
+
       span {
         display: block;
         width: remSet(16px);
@@ -109,6 +123,12 @@
         margin-left: remSet(2px);
         filter: blur(2px);
         animation: record 15s infinite linear;
+
+        @include mobile {
+          width: remSet(32px);
+          margin-left: remSet(5px);
+          margin-bottom: remSet(15px);
+        }
       }
     }
     .cameraDate {
@@ -119,6 +139,11 @@
       color: rgba($color: #fff, $alpha: 0.8);
       text-shadow: 1px 1px 10px rgba($color: #000000, $alpha: 0.5);
       font-size: remSet(12px);
+
+      @include mobile {
+        left: remSet(15px);
+        font-size: remSet(26px);
+      }
     }
     .cameraFocus {
       position: absolute;
@@ -135,6 +160,11 @@
       -webkit-mask-repeat: no-repeat;
       -webkit-mask-position: 0 0;
 
+      @include mobile {
+        height: remSet(350px);
+        left: remSet(15px);
+      }
+
       ul {
         display: flex;
         writing-mode: vertical-lr;
@@ -142,10 +172,20 @@
         text-shadow: 1px 1px 10px rgba($color: #000000, $alpha: 0.5);
         font-size: remSet(10px);
         animation: focus infinite 5s ease-in-out;
+
+        @include mobile {
+          font-size: remSet(22px);
+        }
+
         li {
           margin: remSet(2px) 0;
           padding: remSet(5px) 0;
           position: relative;
+
+          @include mobile {
+            margin: remSet(5px) 0;
+            padding: remSet(5px) 0;
+          }
 
           &::before,
           &::after {
@@ -158,6 +198,12 @@
             top: 0;
             transform: translateX(50%);
             background: rgba($color: #fff, $alpha: 0.8);
+
+            @include mobile {
+              width: remSet(12px);
+              height: 1px;
+              transform: translateX(44%);
+            }
           }
 
           &::after {
@@ -179,6 +225,11 @@
       opacity: 0.5;
       top: 50%;
       transform: translateY(-50%);
+
+      @include mobile {
+        width: remSet(20px);
+        left: remSet(40px);
+      }
     }
 
     .mainSwiper_progressbar {
@@ -190,6 +241,10 @@
       display: block;
       position: relative;
 
+      .white & {
+        background: rgba($color: #2f4858, $alpha: 0.5);
+      }
+
       span {
         background: rgba($color: #ddd, $alpha: 1);
         position: absolute;
@@ -199,6 +254,10 @@
         height: 100%;
         transform: scale(0);
         transform-origin: left top;
+
+        .white & {
+          background: rgba($color: #222, $alpha: 1);
+        }
       }
     }
 
@@ -215,8 +274,19 @@
       cursor: pointer;
       opacity: 0.5;
       transition: opacity 0.5s;
+
+      @include mobile {
+        width: remSet(55px);
+        right: remSet(-85px);
+        top: calc(50% + remSet(10px));
+      }
+
+      .white & {
+        filter: invert(1);
+      }
+
       &:hover {
-        opacity: 12;
+        opacity: 1;
       }
     }
 
