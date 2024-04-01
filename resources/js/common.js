@@ -172,23 +172,9 @@ $(document).ready(function () {
   })();
 
   if (isMobile) {
-    const navText = $('nav ul li a');
-    gsap.set(navText, {
-      y: 100,
-      stagger: 0.1,
-    });
-
-    //모바일버튼
     $('.mobile-btn').click(function () {
       $(this).toggleClass('active');
       $('nav').toggleClass('active');
-
-      if ($('nav').hasClass('active')) {
-        gsap.to(navText, {
-          y: 0,
-          stagger: 0.1,
-        });
-      }
     });
   }
 });

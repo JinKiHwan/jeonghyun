@@ -58,7 +58,7 @@
       align-items: center;
       justify-content: center;
       opacity: 0;
-      transition: all 0.3s ease-in-out 0.3s;
+      transition: top 0.3s ease-in-out 0.3s, opacity 0.3s;
       &.active {
         top: 0;
         opacity: 1;
@@ -213,7 +213,7 @@
           top: 0;
         }
         &:nth-child(2) {
-          top: 50%;
+          top: calc(50%);
         }
         &:nth-child(3) {
           top: auto;
