@@ -160,6 +160,13 @@ $(document).ready(function () {
     slidesPerView: 'auto',
     freemode: true,
   });
+
+  //모바일버튼
+  $('.mobile-btn').click(function () {
+    const navText = document.querySelectorAll('nav ul li a');
+    $(this).toggleClass('active');
+    $('nav').toggleClass('active');
+  });
 });
 
 // 클릭 이벤트 리스너를 'mailCopy' 버튼에 추가

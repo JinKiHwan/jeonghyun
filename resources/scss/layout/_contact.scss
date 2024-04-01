@@ -25,6 +25,11 @@
         font-size: 5vw;
         margin-bottom: 3vw;
       }
+
+      @include mobile-mini {
+        font-size: 8vw;
+        margin-bottom: 8vw;
+      }
     }
 
     ul {
@@ -71,6 +76,10 @@
             font-size: 3vw;
           }
 
+          @include mobile-mini {
+            font-size: 4.5vw;
+          }
+
           cursor: pointer;
           &::before {
             content: '';
@@ -81,6 +90,9 @@
 
             @include mobile {
               width: 3vw;
+            }
+            @include mobile-mini {
+              width: 4.5vw;
             }
           }
         }

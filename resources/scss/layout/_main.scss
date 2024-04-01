@@ -179,6 +179,11 @@
         left: remSet(15px);
       }
 
+      @include mobile-mini {
+        height: remSet(250px);
+        padding-right: 1px;
+      }
+
       ul {
         display: flex;
         writing-mode: vertical-lr;
@@ -220,6 +225,10 @@
               width: remSet(12px);
               height: 1px;
               transform: translateX(44%);
+            }
+            @include mobile-mini {
+              transform: translateX(70%);
+              opacity: 0.5;
             }
           }
 

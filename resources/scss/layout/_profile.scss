@@ -21,6 +21,9 @@
         @include mobile {
           width: 25%;
         }
+        @include mobile-mini {
+          width: 15%;
+        }
 
         img {
           width: 100%;
@@ -58,6 +61,13 @@
     @include mobile {
       width: 100%;
     }
+
+    @include mobile-mini {
+      flex-direction: column;
+      align-items: center;
+      gap: 4vw;
+      max-height: 100%;
+    }
   }
 
   &-img {
@@ -69,6 +79,12 @@
       max-height: 100%;
       width: 45vw;
       object-fit: contain;
+    }
+
+    @include mobile-mini {
+      width: 60vw;
+      margin-right: 0;
+      height: auto;
     }
 
     img {
@@ -93,11 +109,18 @@
         font-size: 4.5vw;
       }
 
+      @include mobile-mini {
+        font-size: 6vw;
+      }
+
       span {
         font-size: remSet(18px);
         margin-left: remSet(10px);
         @include mobile {
           font-size: 2.5vw;
+        }
+        @include mobile-mini {
+          font-size: 3.3vw;
         }
       }
     }
@@ -110,6 +133,9 @@
       @include mobile {
         font-size: 2vw;
       }
+      @include mobile-mini {
+        font-size: 3.3vw;
+      }
       dt {
         width: remSet(100px);
         display: flex;
@@ -117,6 +143,9 @@
         margin-right: remSet(10px);
         @include mobile {
           width: 11vw;
+        }
+        @include mobile-mini {
+          width: 15vw;
         }
       }
     }
