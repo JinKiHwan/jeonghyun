@@ -161,12 +161,36 @@ $(document).ready(function () {
     freemode: true,
   });
 
-  //모바일버튼
-  $('.mobile-btn').click(function () {
-    const navText = document.querySelectorAll('nav ul li a');
-    $(this).toggleClass('active');
-    $('nav').toggleClass('active');
-  });
+  /* 모바일체크 */
+  const isMobile = (() => {
+    const { userAgent, maxTouchPoints } = window.navigator;
+    const isMac = /Macintosh/i.test(userAgent);
+    if (isMac && maxTouchPoints > 0) return true;
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobi|mobi/i.test(
+      userAgent
+    );
+  })();
+
+  if (isMobile) {
+    const navText = $('nav ul li a');
+    gsap.set(navText, {
+      y: 100,
+      stagger: 0.1,
+    });
+
+    //모바일버튼
+    $('.mobile-btn').click(function () {
+      $(this).toggleClass('active');
+      $('nav').toggleClass('active');
+
+      if ($('nav').hasClass('active')) {
+        gsap.to(navText, {
+          y: 0,
+          stagger: 0.1,
+        });
+      }
+    });
+  }
 });
 
 // 클릭 이벤트 리스너를 'mailCopy' 버튼에 추가
