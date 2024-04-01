@@ -18,6 +18,10 @@
         width: 10%;
         aspect-ratio: 16/9;
 
+        @include mobile {
+          width: 25%;
+        }
+
         img {
           width: 100%;
           height: 100%;
@@ -36,6 +40,12 @@
     align-items: center;
     padding-bottom: 7vw;
     padding-top: 2vw;
+
+    @include mobile {
+      max-width: 100%;
+      width: 95%;
+      padding-bottom: 16vw;
+    }
   }
 
   &-wrap {
@@ -44,14 +54,30 @@
     display: flex;
     justify-content: center;
     align-items: flex-start;
+
+    @include mobile {
+      width: 100%;
+    }
   }
 
   &-img {
     height: 100%;
     max-height: remSet(500px);
     margin-right: remSet(20px);
+
+    @include mobile {
+      max-height: 100%;
+      width: 45vw;
+      object-fit: contain;
+    }
+
     img {
       height: 100%;
+
+      @include mobile {
+        height: auto;
+        width: 100%;
+      }
     }
   }
   &-txt {
@@ -62,9 +88,17 @@
       font-size: remSet(40px);
       font-weight: 800;
       margin-bottom: remSet(30px);
+
+      @include mobile {
+        font-size: 4.5vw;
+      }
+
       span {
         font-size: remSet(18px);
         margin-left: remSet(10px);
+        @include mobile {
+          font-size: 2.5vw;
+        }
       }
     }
     li {
@@ -73,11 +107,17 @@
     dl {
       display: flex;
 
+      @include mobile {
+        font-size: 2vw;
+      }
       dt {
         width: remSet(100px);
         display: flex;
         justify-content: space-between;
         margin-right: remSet(10px);
+        @include mobile {
+          width: 11vw;
+        }
       }
     }
   }

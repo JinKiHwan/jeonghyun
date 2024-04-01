@@ -113,6 +113,10 @@
         font-size: remSet(32px);
       }
 
+      @include mobile-mini {
+        font-size: 2.5vw;
+      }
+
       span {
         display: block;
         width: remSet(16px);
@@ -129,6 +133,11 @@
           margin-left: remSet(5px);
           margin-bottom: remSet(15px);
         }
+
+        @include mobile-mini {
+          filter: blur(1px);
+          width: 2.5vw;
+        }
       }
     }
     .cameraDate {
@@ -144,13 +153,18 @@
         left: remSet(15px);
         font-size: remSet(26px);
       }
+
+      @include mobile-mini {
+        left: 2vw;
+        top: 3vw;
+        font-size: 2vw;
+      }
     }
     .cameraFocus {
       position: absolute;
       left: remSet(5px);
       top: 50%;
       height: remSet(150px);
-      /* border: 1px solid #f00; */
       display: flex;
       align-items: center;
       overflow: hidden;
@@ -175,6 +189,9 @@
 
         @include mobile {
           font-size: remSet(22px);
+        }
+        @include mobile-mini {
+          font-size: 1.8vw;
         }
 
         li {
@@ -240,6 +257,10 @@
       background: rgba($color: #fff, $alpha: 0.5);
       display: block;
       position: relative;
+
+      @include mobile {
+        height: 2px;
+      }
 
       .white & {
         background: rgba($color: #2f4858, $alpha: 0.5);

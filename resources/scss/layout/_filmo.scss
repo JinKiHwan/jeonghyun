@@ -25,6 +25,9 @@
         transform: translateY(-25vw);
       }
     }
+
+    @include mobile-mini {
+    }
   }
 
   .filmoSwiper {
@@ -36,6 +39,11 @@
 
     @include mobile {
       width: calc(100% - 26vw);
+      padding: 0;
+    }
+
+    @include mobile-mini {
+      height: remSet(80px);
     }
 
     .swiper-wrapper {
@@ -65,8 +73,11 @@
           font-family: 'Diphylleia-Regular';
 
           @include mobile {
-            font-size: 3.5vw;
+            font-size: 3vw;
             justify-content: flex-end;
+          }
+          @include mobile-mini {
+            font-size: 3.5vw;
           }
 
           span {
@@ -85,12 +96,21 @@
             text-align: right;
             text-shadow: 1px 1px 10px rgba($color: #000000, $alpha: 0.5);
             line-height: 1.2;
+
+            @include mobile-mini {
+              width: 60%;
+            }
           }
 
           dd {
             width: 50%;
             font-weight: 200;
             text-shadow: 1px 1px 10px rgba($color: #000000, $alpha: 0.5);
+
+            @include mobile-mini {
+              width: 35%;
+              font-size: 3vw;
+            }
           }
         }
       }
@@ -105,8 +125,10 @@
       font-family: 'Diphylleia-Regular';
 
       @include mobile {
+        top: 3.3vw;
         right: auto;
-        left: -8vw;
+        left: -16vw;
+        font-size: 3vw;
       }
 
       #filmoYear {
@@ -125,10 +147,11 @@
           center/contain;
 
         @include mobile {
-          top: remSet(0px);
+          top: 0.5vw;
           left: auto;
-          right: remSet(-30px);
+          right: -3.5vw;
           transform: rotate(180deg);
+          width: 1.9vw;
         }
       }
     }
@@ -141,6 +164,11 @@
     opacity: 0.5;
     height: 50vh;
     transform: translateY(-50%);
+
+    @include mobile {
+      opacity: 0.2;
+    }
+
     img {
       height: 100%;
       object-fit: contain;

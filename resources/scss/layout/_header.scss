@@ -12,6 +12,12 @@
     transition: text-shadow 0.3s;
     text-shadow: 1px 1px 5px rgba($color: #000000, $alpha: 0.5);
 
+    @include mobile {
+      font-size: 3vw;
+      left: 5vw;
+      top: 3vw;
+    }
+
     .white & {
       color: #2f4858;
     }

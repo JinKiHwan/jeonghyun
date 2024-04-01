@@ -127,6 +127,7 @@
         </div>
       </section>
 
+      <!-- 날짜 업데이트 스크립트 -->
       <script>
         function formatDate(date) {
           var d = new Date(date),
@@ -146,6 +147,7 @@
           );
         });
       </script>
+      <!-- //날짜 업데이트 스크립트 -->
 
       <section class="profile" id="profile">
         <div class="profile_film swiper">
@@ -260,12 +262,8 @@
                 >
               </li>
               <li class="mail">
-                <input
-                  id="mail"
-                  href="javascript:void(0)"
-                  value="hijjh1965@naver.com"
-                  onclick="this.select();document.execCommand('copy');alert('클립보드에 복사 되었습니다.');return false;" />
-                <label for="mail">Mail</label>
+                <div id="myMail">hijjh1965@naver.com</div>
+                <a href="javascript:void(0)" id="mailCopy">Mail</a>
               </li>
             </ul>
           </div>

@@ -162,11 +162,48 @@ $(document).ready(function () {
   });
 });
 
-function copy(id) {
-  var r = document.createRange();
-  r.selectNode(document.getElementById(id));
-  window.getSelection().removeAllRanges();
-  window.getSelection().addRange(r);
-  document.execCommand('copy');
-  window.getSelection().removeAllRanges();
+// 클릭 이벤트 리스너를 'mailCopy' 버튼에 추가
+document.getElementById('mailCopy').addEventListener('click', function () {
+  // 'myMail' 요소의 텍스트를 가져옴
+  const mailText = document.getElementById('myMail').innerText;
+
+  // 클립보드에 텍스트를 복사하는 함수 호출
+  copyToClipboard(mailText);
+});
+
+function copyToClipboard(text) {
+  if (navigator.clipboard && window.isSecureContext) {
+    // navigator.clipboard 사용이 가능한 경우
+    navigator.clipboard.writeText(text).then(
+      function () {
+        console.log('Clipboard successfully set');
+      },
+      function () {
+        console.error('Clipboard write failed');
+      }
+    );
+  } else {
+    // navigator.clipboard 사용이 불가능한 경우, textarea를 이용한 복사 방법
+    let textArea = document.createElement('textarea');
+    textArea.value = text;
+    // 스타일을 통해 화면에서 보이지 않도록 처리
+    textArea.style.position = 'absolute';
+    textArea.style.left = '-9999px';
+    textArea.setAttribute('readonly', '');
+    document.body.appendChild(textArea);
+    textArea.select();
+    textArea.setSelectionRange(0, 99999); // 모바일 기기를 위한 추가
+
+    try {
+      let successful = document.execCommand('copy');
+      let msg = successful ? 'successful' : 'unsuccessful';
+      console.log('Fallback: Copying text command was ' + msg);
+    } catch (err) {
+      console.error('Fallback: Oops, unable to copy', err);
+    }
+
+    document.body.removeChild(textArea);
+  }
+
+  alert('메일이 복사되었습니다.');
 }

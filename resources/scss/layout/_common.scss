@@ -44,6 +44,9 @@ section {
     @include mobile {
       font-size: 4vw;
     }
+    @include mobile-mini {
+      font-size: 5vw;
+    }
   }
 
   span {
@@ -59,6 +62,9 @@ section {
 
     @include mobile {
       width: 10vw;
+    }
+    @include mobile-mini {
+      width: 8vw;
     }
   }
 }
